@@ -1,0 +1,28 @@
+{
+  "name": "storefinal-chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot de atencion para la tienda STOREFINAL con Azure OpenAI y PostgreSQL",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristhian690/storefinal-chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/cristhian690/storefinal-chatbot/issues"
+  },
+  "homepage": "https://github.com/cristhian690/storefinal-chatbot#readme",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "openai": "^7.63.0",
+    "pg": "^8.23.1"
+  }
+}
