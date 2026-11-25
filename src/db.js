@@ -20,20 +20,22 @@ export async function verificarConexion() {
 }
 
 // Requisito 1: Buscar productos por texto (marca, modelo, categoría, descripción) o precio máximo
-export async function buscarProductos({ consulta = "", categoria = "", precioMax = null } = {}) {
+export async function buscarProductos({ consulta, categoria, precioMax } = {}) {
+  const texto = (consulta ?? "").trim();
+  const cat = (categoria ?? "").trim();
   const condiciones = [];
   const valores = [];
 
-  if (consulta.trim()) {
-    valores.push(`%${consulta.trim()}%`);
+  if (texto) {
+    valores.push(`%${texto}%`);
     const i = valores.length;
     condiciones.push(
       `(marca ILIKE $${i} OR modelo ILIKE $${i} OR categoria ILIKE $${i} OR descripcion ILIKE $${i})`
     );
   }
 
-  if (categoria.trim()) {
-    valores.push(`%${categoria.trim()}%`);
+  if (cat) {
+    valores.push(`%${cat}%`);
     condiciones.push(`categoria ILIKE $${valores.length}`);
   }
 
