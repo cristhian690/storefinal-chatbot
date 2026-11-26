@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { verificarConexion } from "./db.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 3000;
@@ -10,8 +11,22 @@ const app = express();
 app.use(express.json({ limit: "100kb" }));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-app.get("/api/salud", (req, res) => {
-  res.json({ ok: true });
+app.get("/api/salud", async (req, res) => {
+  try {
+    const db = await verificarConexion();
+    res.json({
+      ok: true,
+      db: "conectada",
+      hora_servidor: db.hora_servidor,
+    });
+  } catch (error) {
+    console.error("Error de conexión a la BD:", error.message);
+    res.status(500).json({
+      ok: false,
+      db: "desconectada",
+      detalle: error.message,
+    });
+  }
 });
 
 app.post("/api/chat", (req, res) => {
