@@ -30,13 +30,17 @@ export async function buscarProductos({ consulta, categoria, precioMax } = {}) {
     valores.push(`%${texto}%`);
     const i = valores.length;
     condiciones.push(
-      `(marca ILIKE $${i} OR modelo ILIKE $${i} OR categoria ILIKE $${i} OR descripcion ILIKE $${i})`
+      `(unaccent(marca) ILIKE unaccent($${i})
+        OR unaccent(modelo) ILIKE unaccent($${i})
+        OR unaccent(categoria) ILIKE unaccent($${i})
+        OR unaccent(descripcion) ILIKE unaccent($${i}))`
     );
   }
 
   if (cat) {
     valores.push(`%${cat}%`);
-    condiciones.push(`categoria ILIKE $${valores.length}`);
+    const i = valores.length;
+    condiciones.push(`unaccent(categoria) ILIKE unaccent($${i})`);
   }
 
   if (precioMax !== null && precioMax !== undefined && Number(precioMax) > 0) {

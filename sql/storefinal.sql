@@ -2,6 +2,9 @@
 -- BASE DE DATOS: STOREFINAL (PostgreSQL)
 -- =====================================================
 
+-- Extensión para búsquedas sin tildes
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
 -- Limpieza opcional si necesitas volver a ejecutar el script
 DROP TABLE IF EXISTS consultados;
 DROP TABLE IF EXISTS especificaciones;
