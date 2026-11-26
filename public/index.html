@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STOREFINAL | Asistente virtual</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="cabecera">
+      <div class="marca">
+        <div class="logo">SF</div>
+        <div>
+          <h1>STOREFINAL</h1>
+          <p class="estado"><span class="punto"></span>Asistente virtual en línea</p>
+        </div>
+      </div>
+    </header>
+
+    <main id="mensajes" class="mensajes">
+      <div class="mensaje bot">
+        <div class="burbuja">¡Hola! Soy el asistente virtual de STOREFINAL. Puedo ayudarte a buscar productos, ver sus datos técnicos y resolver tus dudas sobre pagos y envíos. ¿Qué estás buscando hoy?</div>
+      </div>
+    </main>
+
+    <form id="formulario" class="formulario">
+      <input id="entrada" type="text" placeholder="Escribe tu consulta..." autocomplete="off" maxlength="500" required>
+      <button id="btnEnviar" type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
